@@ -1,0 +1,12 @@
+{
+    "name": "miskas/didelis",
+    "description": "Apie miska ir zveris",
+    "autoload": {
+        "psr-4": {
+            "Miskas\\Didelis\\": "src/",
+            "Miskas\\Didelis\\Grybu\\Laukas\\": "src/",
+            "Sodas\\Darzas\\": "app/"
+        }
+    },
+    "require": {}
+}
