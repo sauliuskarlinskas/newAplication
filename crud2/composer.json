@@ -4,7 +4,8 @@
     "license": "MIT",
     "autoload": {
         "psr-4": {
-            "Colors\\": "app/"
+            "Colors\\": "app/",
+            "App\\DB\\": "app/"
         }
     },
     "authors": [
@@ -13,5 +14,7 @@
             "email": "127085630+sauliuskarlinskas@users.noreply.github.com"
         }
     ],
-    "require": {}
+    "require": {
+        "ramsey/uuid": "^4.7"
+    }
 }

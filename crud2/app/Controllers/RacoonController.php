@@ -2,11 +2,19 @@
 
 namespace Colors\Controllers;
 
+use Colors\App;
+use Colors\FileWriter;
+
 class RacoonController
 {
     public function index()
     {
-        echo '<h1>RacoonController</h1>';
+        $data = new FileWriter('racoon');
+
+        return App::view('racoon/index', [
+            'pageTitle' => 'Racoons list',
+            'racoons' => $data->showAll(),
+        ]);
     }
 
     public function show(int $id)
