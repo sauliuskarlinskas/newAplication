@@ -1,0 +1,18 @@
+{
+    "name": "php/bank",
+    "description": "Bank PHP V2",
+    "license": "MIT",
+    "autoload": {
+        "psr-4": {
+            "Bank\\": "app/",
+            "App\\DB\\":"app/"
+        }
+    },
+    "authors": [
+        {
+            "name": "sauliuskarlinskas",
+            "email": "127085630+sauliuskarlinskas@users.noreply.github.com"
+        }
+    ],
+    "require": {}
+}
