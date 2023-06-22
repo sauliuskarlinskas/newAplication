@@ -4,6 +4,8 @@ namespace Colors;
 
 use Colors\Controllers\RacoonController;
 use Colors\Controllers\HomeController;
+//use Colors\Controllers\LoginController;
+
 
 class App
 {
@@ -22,12 +24,47 @@ class App
     {
         if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) == 1 && $url[0] == '') {
             return (new HomeController)->index();
-        } else if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) == 1 && $url[0] == 'racoon') {
-            return (new RacoonController)->index();
-        } else if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) == 2 && $url[0] == 'racoon') {
-            return (new RacoonController)->show($url[1]);
+        }
 
-        } else {
+        // Login
+        // if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) == 1 && $url[0] == 'login') {
+        //     return (new LoginController)->index();
+        // }
+        // if ($_SERVER['REQUEST_METHOD'] == 'POST' && count($url) == 1 && $url[0] == 'login') {
+        //     return (new LoginController)->login($_POST);
+        // }
+
+        // Auth middleware
+        // if (!isset($_SESSION['email'])) {
+        //     header('Location: /login');
+        //     die;
+        // }
+        // Auth middleware END
+
+        // Racoon
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) == 1 && $url[0] == 'racoon') {
+            return (new RacoonController)->index();
+        }
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) == 2 && $url[0] == 'racoon' && $url[1] == 'create') {
+            return (new RacoonController)->create();
+        }
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && count($url) == 2 && $url[0] == 'racoon' && $url[1] == 'store') {
+            return (new RacoonController)->store($_POST);
+        }
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) == 3 && $url[0] == 'racoon' && $url[1] == 'edit') {
+            return (new RacoonController)->edit($url[2]);
+        }
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && count($url) == 3 && $url[0] == 'racoon' && $url[1] == 'update') {
+            return (new RacoonController)->update($url[2], $_POST);
+        }
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) == 3 && $url[0] == 'racoon' && $url[1] == 'delete') {
+            return (new RacoonController)->delete($url[2]);
+        }
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && count($url) == 3 && $url[0] == 'racoon' && $url[1] == 'destroy') {
+            return (new RacoonController)->destroy($url[2]);
+        }
+        // Racoon END
+        else {
             return self::view('404', [
                 'pageTitle' => 'Page Not Found 404',
             ]);
