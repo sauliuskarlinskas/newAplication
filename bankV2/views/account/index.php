@@ -1,7 +1,7 @@
 <h1>Saskaitos</h1>
 
 <a href="/account/create/">Sukurti saskaita</a>
-<?php if (empty($racoons)) : ?>
+<?php if (empty($accounts)) : ?>
     <p>Nera saskaitu.</p>
 <?php else: ?>
 <?php foreach ($accounts as $account) : ?>

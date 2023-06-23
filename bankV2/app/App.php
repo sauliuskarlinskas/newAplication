@@ -24,16 +24,16 @@ class App
         if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) == 1 && $url[0] == 'account') {
             return (new AccountController)->index();
         }
-        if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) == 3 && $url[0] == 'account' && $url[1] == 'create') {
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) == 2 && $url[0] == 'account' && $url[1] == 'create') {
             return (new AccountController)->create();
         }
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && count($url) == 3 && $url[0] == 'account' && $url[1] == 'store') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && count($url) == 2 && $url[0] == 'account' && $url[1] == 'store') {
             return (new AccountController)->store($_POST);
         }
-        if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) == 4 && $url[0] == 'account' && $url[1] == 'edit') {
+        if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) == 3 && $url[0] == 'account' && $url[1] == 'edit') {
             return (new AccountController)->edit($url[2]);
         }
-        if ($_SERVER['REQUEST_METHOD'] == 'POST' && count($url) == 4 && $url[0] == 'account' && $url[1] == 'update') {
+        if ($_SERVER['REQUEST_METHOD'] == 'POST' && count($url) == 3 && $url[0] == 'account' && $url[1] == 'update') {
             return (new AccountController)->update($url[2], $_POST);
         }
         if ($_SERVER['REQUEST_METHOD'] == 'GET' && count($url) == 3 && $url[0] == 'account' && $url[1] == 'delete') {

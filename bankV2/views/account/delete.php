@@ -8,6 +8,6 @@
         <button type="submit">Istrinti</button>
     </div>
     <div>
-        <a href="/racoon">atsaukti</a>
+        <a href="/account">atsaukti</a>
     </div>
 </form>

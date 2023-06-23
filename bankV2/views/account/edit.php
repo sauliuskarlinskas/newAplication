@@ -5,11 +5,11 @@
         <input type="text" name="name" id="name" value="<?= $account['name'] ?>" required>
     </div>
     <div>
-        <label for="name">Pavardė</label>
+        <label for="lastName">Pavardė</label>
         <input type="text" name="lastName" id="lastName" required>
     </div>
     <div>
-        <label for="name">Asmens kodas</label>
+        <label for="personalId">Asmens kodas</label>
         <input type="text" name="personalId" id="personalId" required>
     </div>
         <button type="submit">Pakeisti</button>
