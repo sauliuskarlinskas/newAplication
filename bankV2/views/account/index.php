@@ -4,14 +4,13 @@
             <h1 style="color:crimson; font-weight: bold; text-decoration: underline;" class="display-3">Saskaitos</h1>
         </div>
         <div class="col m-5">
-            <a class="btn btn-success" href="/account/create/">Sukurti saskaita</a>
+            <a class="btn btn-success" href="/account/create/">Sukurti saskaitą</a>
         </div>
         <?php if (empty($accounts)): ?>
-            <p>Nera saskaitu.</p>
+            <p style="color:blue; font-weight: bold">Nėra saskaitų.</p>
         <?php else: ?>
             <div class="col">
                 <table class="table table-dark table-striped">
-
                     <thead>
                         <tr>
                             <th scope="col">Vardas</th>
@@ -49,7 +48,11 @@
                             </tr>
                         </tbody>
 
-
                     <?php endforeach ?>
-                <?php endif ?>
+                    <?php endif ?>
+
+                </table>
+
+            </div>
+    </div>
 </body>

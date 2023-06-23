@@ -24,7 +24,7 @@ class FileWriter implements DataBase
     {
         $id = rand(100000000, 999999999);
         $userData['id'] = $id;
-        $accountNumber = rand(100000000, 999999999);
+        $accountNumber = rand(100000000000000000, 999999999999999999);
         $userData['accountNumber'] = $accountNumber;
         $balance = 0;
         $userData['balance'] = $balance;
