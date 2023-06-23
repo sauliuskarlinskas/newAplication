@@ -32,14 +32,7 @@ class FileWriter implements DataBase
 
     }
 
-    // public function create(array $userData): void
-    // {
-    //     $accountNumber = rand(100000000, 999999999);
-    //     $userData['accountNumber'] = $accountNumber;
-    //     $this->data[] = $userData;
-    // }
-
-
+    
 
     public function __destruct()
     {
