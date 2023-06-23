@@ -12,7 +12,8 @@ class FileWriter implements DataBase
     {
         $this->fileName = $fileName;
         if (!file_exists(__DIR__ . '/../data/' . $fileName . '.json')) {
-            $this->data = [];
+            $this->data = [
+            ];
         } else {
             $this->data = json_decode(file_get_contents(__DIR__ . '/../data/' . $fileName . '.json'), 1);
         }
@@ -21,11 +22,23 @@ class FileWriter implements DataBase
 
     public function create(array $userData): void
     {
-        
         $id = rand(100000000, 999999999);
         $userData['id'] = $id;
+        $accountNumber = rand(100000000, 999999999);
+        $userData['accountNumber'] = $accountNumber;
+        $balance = 0;
+        $userData['balance'] = $balance;
         $this->data[] = $userData;
+
     }
+
+    // public function create(array $userData): void
+    // {
+    //     $accountNumber = rand(100000000, 999999999);
+    //     $userData['accountNumber'] = $accountNumber;
+    //     $this->data[] = $userData;
+    // }
+
 
 
     public function __destruct()
