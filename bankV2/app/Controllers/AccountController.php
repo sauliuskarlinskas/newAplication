@@ -12,7 +12,7 @@ class AccountController
         $data = new FileWriter('account');
 
         return App::view('account/index', [
-            'pageTitle' => 'Saskaitos',
+            'pageTitle' => 'accounts',
             'accounts' => $data->showAll(),
         ]);
     }
@@ -20,7 +20,7 @@ class AccountController
     public function create()
     {
         return App::view('account/create', [
-            'pageTitle' => 'Sukurti saskaita',
+            'pageTitle' => 'create account',
         ]);
     }
 
@@ -38,7 +38,7 @@ class AccountController
         $account = $data->show($id);
 
         return App::view('account/edit', [
-            'pageTitle' => 'redaguoti saskaita',
+            'pageTitle' => 'edit account',
             'account' => $account,
         ]);
     }
@@ -55,7 +55,7 @@ class AccountController
     {
         $account = (new FileWriter('account'))->show($id);
         return App::view('account/delete', [
-            'pageTitle' => 'istrinti saskaita',
+            'pageTitle' => 'delete account',
             'account' => $account,
         ]);
     }

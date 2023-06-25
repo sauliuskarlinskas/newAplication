@@ -35,7 +35,7 @@
                                     value="<?= $account['accountNumber'] ?>" required>
                             </td>
                             <td>
-                                <input type="number" name="balance" id="balance" value="<?= $account['balance'] ?>"
+                                <input type="number" name="balance" id="balance" 
                                     required>
                                 <?= $account['balance'] ?>€
                             </td>
@@ -53,28 +53,3 @@
             <button class="btn btn-success" type="submit">Pakeisti</button>
     </div>
     </form>
-
-
-
-
-
-    <!-- <div>
-                <label for="name">Vardas:<?= $account['name'] ?></label>
-                <input type="text" name="name" id="name" value="<?= $account['name'] ?>" required>
-            </div>
-            <div>
-                <label for="lastName">Pavardė</label>
-                <input type="text" name="lastName" id="lastName" value="<?= $account['lastName'] ?>" required>
-            </div>
-            <div>
-                <label for="personalId">Asmens kodas</label>
-                <input type="text" name="personalId" id="personalId" value="<?= $account['personalId'] ?>" required>
-            </div>
-            <div>
-                <label for="personalId">Saskaitos numeris</label>
-                <input type="text" name="accountNumber" id="accountNumber" value="<?= $account['accountNumber'] ?>" required>
-            </div>
-            <div>
-                <label for="personalId">Likutis</label>
-                <input type="text" name="balance" id="balance" value="<?= $account['balance'] ?>" required>
-            </div> -->

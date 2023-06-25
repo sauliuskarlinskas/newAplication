@@ -1,4 +1,4 @@
-<body style="background-color:grey;">
+<body style="background-color:salmon;">
     <div class="container">
         <div class="col m-5">
             <h2>Saskaitos trynimas</h2>
@@ -6,11 +6,7 @@
         <form action="/account/destroy/<?= $account['id'] ?>" method="post">
             <div>
                 <p style="color:crimson; font-weight: bold">Ar tikrai norite ištrinti saskaitą?</p>
-                <h2>
-                    <?= $account['name'] ?>
-                </h2>
-
-
+                
                 <div class="col">
                     <table class="table table-dark table-striped">
                         <thead>

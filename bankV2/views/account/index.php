@@ -7,7 +7,7 @@
             <a class="btn btn-success" href="/account/create/">Sukurti saskaitą</a>
         </div>
         <?php if (empty($accounts)): ?>
-            <p style="color:blue; font-weight: bold">Nėra saskaitų.</p>
+            <p style="color:blue; font-weight: bold">Nėra saskaitų</p>
         <?php else: ?>
             <div class="col">
                 <table class="table table-dark table-striped">

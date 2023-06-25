@@ -1,4 +1,4 @@
-<body style="background-color:grey;">
+<body style="background-color:olive;">
     <div class="container">
         <h1 class="col m-5">Naujos sąskaitos sukūrimas</h1>
         <div class="col m-5">
