@@ -4,6 +4,7 @@ namespace Colors\Controllers;
 
 use Colors\App;
 use Colors\FileWriter;
+use Colors\Messages;
 
 class RacoonController
 {
@@ -28,6 +29,7 @@ class RacoonController
     {
         $data = new FileWriter('racoon');
         $data->create($request);
+        Messages::addMessage('success', 'Racoon created');
 
         header('Location: /racoon');
     }
@@ -47,6 +49,7 @@ class RacoonController
     {
         $data = new FileWriter('racoon');
         $data->update($id, $request);
+        Messages::addMessage('success', 'Racoon updated');
 
         header('Location: /racoon');
     }
@@ -64,6 +67,7 @@ class RacoonController
     {
         $data = new FileWriter('racoon');
         $data->delete($id);
+        Messages::addMessage('success', 'Racoon deleted');
 
         header('Location: /racoon');
     }

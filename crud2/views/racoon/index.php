@@ -1,6 +1,5 @@
 <h1>Racoons list</h1>
 
-<a href="/racoon/create/">Create Racoon</a>
 <?php if (empty($racoons)) : ?>
     <p>No racoons found.</p>
 <?php else: ?>
