@@ -1,6 +1,6 @@
 <div>
     <a href="<?= URL ?>">Home</a>
-
+    <a href="<?= URL . 'colors' ?>">Colors</a>
     <a href="<?= URL . 'racoon' ?>">Racoons</a>
     <a href="<?= URL . 'racoon/create' ?>">Add More Racoons</a>
 
