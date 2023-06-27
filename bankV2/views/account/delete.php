@@ -6,7 +6,6 @@
         <form action="/account/destroy/<?= $account['id'] ?>" method="post">
             <div>
                 <p style="color:crimson; font-weight: bold">Ar tikrai norite ištrinti saskaitą?</p>
-                
                 <div class="col">
                     <table class="table table-dark table-striped">
                         <thead>
@@ -36,17 +35,10 @@
                                 <td>
                                     <?= $account['balance'] ?>€
                                 </td>
-
-
-
                             </tr>
                         </tbody>
                     </table>
-
                 </div>
-
-
-
             </div>
             <div>
                 <button class="btn btn-danger" type="submit">Ištrinti</button>

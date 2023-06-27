@@ -1,11 +1,9 @@
 <body style="background-color:grey;">
     <div class="container">
         <div class="col m-5">
-            <h2>Saskaitos tvarkymas</h2>
+            <h2>Balanso keitimas</h2>
         </div>
-        <form action="/account/update/<?= $account['id'] ?>" method="post">
-
-
+        <form action="<?= '/account/update/' . $id ?>" method="post">
             <div class="col">
                 <table class="table table-dark table-striped">
                     <thead>
@@ -14,42 +12,36 @@
                             <th scope="col">Pavardė</th>
                             <th scope="col">Asmens kodas</th>
                             <th scope="col">Saskaitos numeris</th>
-                            <th scope="col">Likutis</th>
+                            <th scope="col">Balansas</th>
                         </tr>
                     </thead>
                     <tbody>
                         <tr>
                             <td>
-                                <input type="text" name="name" id="name" value="<?= $account['name'] ?>" required>
+                                <?= $name ?>
                             </td>
                             <td>
-                                <input type="text" name="lastName" id="lastName" value="<?= $account['lastName'] ?>"
-                                    required>
+                                <?= $lastName ?>
                             </td>
                             <td>
-                                <input type="text" name="personalId" id="personalId"
-                                    value="<?= $account['personalId'] ?>" required>
+                                <?= $personalId ?>
                             </td>
                             <td>
-                                LT:<input type="text" name="accountNumber" id="accountNumber"
-                                    value="<?= $account['accountNumber'] ?>" required>
+                                LT:
+                                <?= $accountNumber ?>
                             </td>
                             <td>
-                                <input type="number" name="balance" id="balance" 
-                                    required>
-                                <?= $account['balance'] ?>€
+                                <?= $balance ?>€
                             </td>
                             <td>
-                                <button class="btn btn-success" type="submit">Pakeisti</button>
+                                <input type="number" name="amount" id="amount" required>
+                                <button class="btn btn-success" type="submit" name="add" value=<?= 1 ?>>Pridėti</button>
+                                <button class="btn btn-danger" type="submit" name="withdraw"
+                                    value=<?= 1 ?>>Išimti</button>
                             </td>
-
-
                         </tr>
                     </tbody>
                 </table>
-
-            </div>
-
-            <button class="btn btn-success" type="submit">Pakeisti</button>
+        </form>
     </div>
-    </form>
+</body>

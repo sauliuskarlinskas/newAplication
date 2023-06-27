@@ -2,7 +2,7 @@
     <div class="col m-2">
         <?php if (isset($_SESSION['email'])): ?>
             <form action="<?= URL . 'logout' ?>" method="post" style="display: inline;">
-            <h3>Vartotojas:<?= $_SESSION['name'] ?></h3>
+            <h5>Bankininkas: <?= $_SESSION['name'] ?></h5>
                 <button type="submit" class="btn btn-danger">Atsijungti
                 </button>
             </form>

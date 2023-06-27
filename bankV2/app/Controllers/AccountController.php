@@ -4,6 +4,8 @@ namespace Bank\Controllers;
 
 use Bank\App;
 use Bank\FileWriter;
+use Bank\Messages;
+use Bank\OldData;
 
 class AccountController
 {
@@ -26,10 +28,41 @@ class AccountController
 
     public function store(array $request)
     {
-        $data = new FileWriter('account');
-        $data->create($request);
+        extract($request);
 
+        $error1 = 0;
+        $error2 = 0;
+
+        if (strlen($name) < 3 || strlen($lastName) < 3) {
+            Messages::addMessage('danger', 'Vardas ir pavardė turi būti bent iš trijų simbolių.');
+            $error1 = 1;
+        }
+
+        if (!ctype_digit($personalId) || strlen(trim($personalId)) !== 11) {
+            Messages::addMessage('danger', 'Asmens kodą turi sudaryti vienuolika skaičių.');
+            $error2 = 1;
+        }
+
+        if ($error1 || $error2) {
+            OldData::flashData($request);
+            header('Location: /account/create');
+            die;
+        }
+
+        $data = new FileWriter('account');
+        $newAccount = [
+            'id' => $id,
+            'name' => $name,
+            'lastName' => $lastName,
+            'personalId' => $personalId,
+            'accountNumber' => $accountNumber,
+            'balance' => 0
+        ];
+        $data->create($newAccount);
+
+        Messages::addMessage('success', 'Nauja sąskaita sėkmingai sukurta.');
         header('Location: /account');
+
     }
 
     public function edit(int $id)
@@ -37,18 +70,69 @@ class AccountController
         $data = new FileWriter('account');
         $account = $data->show($id);
 
+        $id = $account['id'];
+        $name = $account['name'];
+        $lastName = $account['lastName'];
+        $personalId = $account['personalId'];
+        $accountNumber = $account['accountNumber'];
+        $balance = $account['balance'];
+
         return App::view('account/edit', [
-            'pageTitle' => 'edit account',
-            'account' => $account,
+            'pageTitle' => 'edit balance',
+            'id' => $id,
+            'name' => $name,
+            'lastName' => $lastName,
+            'personalId' => $personalId,
+            'accountNumber' => $accountNumber,
+            'balance' => $balance
         ]);
     }
 
-    public function update(int $id, array $request)
+    public function update(int $id, array $request, int $delete = 0)
     {
         $data = new FileWriter('account');
-        $data->update($id, $request);
 
-        header('Location: /account');
+        $account = $data->show($id);
+
+        $amount = $request['amount'];
+
+        if (isset($request['add'])) {
+            if ($amount <= 0) {
+                Messages::addMessage('danger', 'Įvesta suma turi būti teigiamas sveikasis skaičius.');
+                header('Location: /account/edit/' . $id);
+                die;
+            }
+
+            $account['balance'] += $amount;
+
+            $data->update($id, $account);
+            Messages::addMessage('success', 'Į sąskaitą pridėta lėšų.');
+            header('Location: /account/edit/' . $id);
+        }
+
+        if (isset($_POST['withdraw'])) {
+            if ($amount <= 0) {
+                Messages::addMessage('danger', 'Įvesta suma turi būti teigiamas sveikasis skaičius.');
+                header('Location: /account/edit/' . $id);
+                die;
+            }
+
+            if ($account['balance'] < $amount) {
+                Messages::addMessage('danger', 'Nepakankamas sąskaitos likutis.');
+                header('Location: /account/edit/' . $id);
+                die;
+            }
+
+            $account['balance'] -= $amount;
+
+            $data->update($id, $account);
+            Messages::addMessage('success', 'Iš sąskaitos išimta lėšų.');
+
+            if ($delete == 0) {
+                header('Location: /account/edit/' . $id);
+            }
+        }
+
     }
 
     public function delete(int $id)
@@ -63,13 +147,18 @@ class AccountController
     public function destroy(int $id)
     {
         $data = new FileWriter('account');
-        $data->delete($id);
 
-        header('Location: /account');
+        $account = $data->show($id);
+        if ($account['balance'] == 0) {
+            $data->delete($id);
+            Messages::addMessage('success', 'Saskaita ištrinta');
+            header('Location: /account');
+        } else {
+            Messages::addMessage('danger', 'Saskaitoje yra lėšų');
+
+            header('Location: /account/delete/' . $id);
+        }
+
     }
-
-
-
-
 
 }

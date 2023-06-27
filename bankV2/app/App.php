@@ -30,7 +30,7 @@ class App
             return (new LoginController)->login($_POST);
         }
         if ($_SERVER['REQUEST_METHOD'] == 'POST' && count($url) == 1 && $url[0] == 'logout') {
-            return (new LoginController)->logout($_POST);
+            return (new LoginController)->logout();
         }
         // Login END
 
