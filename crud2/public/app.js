@@ -14,14 +14,85 @@ __webpack_require__.r(__webpack_exports__);
 
 // Server Side Rendering with JS
 
-if (document.querySelector('#colors--list')) {
-  var colorsList = document.querySelector('#colors--list');
-  axios__WEBPACK_IMPORTED_MODULE_0__["default"].get('http://colors.test/colors/list').then(function (res) {
-    var html = res.data.html;
-    colorsList.innerHTML = html;
+var insertList = function insertList(listDom, res) {
+  var html = res.data.html;
+  listDom.innerHTML = html;
+  var deleteButtons = document.querySelectorAll('.button--delete');
+  var editButtons = document.querySelectorAll('.button--edit');
+  var colorsList = document.querySelector('.colors--list');
+  deleteButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      axios__WEBPACK_IMPORTED_MODULE_0__["default"]["delete"](button.dataset.url).then(function (res) {
+        if (res.data.success) {
+          getList(colorsList);
+        }
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    });
+  });
+  editButtons.forEach(function (button) {
+    button.addEventListener('click', function () {
+      axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(button.dataset.url).then(function (res) {
+        if (res.data.success) {
+          insertEdit(res);
+        }
+      })["catch"](function (err) {
+        return console.log(err);
+      });
+    });
+  });
+};
+var insertEdit = function insertEdit(res) {
+  var editModal = document.querySelector('.edit--modal');
+  var html = res.data.html;
+  editModal.innerHTML = html;
+  var closeModal = document.querySelectorAll('.--close');
+  var updateButton = document.querySelector('.update--button');
+  closeModal.forEach(function (button) {
+    button.addEventListener('click', function () {
+      editModal.innerHTML = '';
+    });
+  });
+  updateButton.addEventListener('click', function () {
+    var hex = document.querySelector('.edit--color').value;
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"].put(updateButton.dataset.url, {
+      name: 'New Color',
+      hex: hex
+    }).then(function (res) {
+      if (res.data.success) {
+        getList(document.querySelector('.colors--list'));
+        editModal.innerHTML = '';
+      }
+    })["catch"](function (err) {
+      return console.log(err);
+    });
+  });
+};
+var getList = function getList(colorsList) {
+  axios__WEBPACK_IMPORTED_MODULE_0__["default"].get(colorsList.dataset.url).then(function (res) {
+    insertList(colorsList, res);
   })["catch"](function (err) {
     return console.log(err);
   });
+};
+if (document.querySelector('.colors--list')) {
+  var colorsList = document.querySelector('.colors--list');
+  var createButton = document.querySelector('.create--button');
+  var createColor = document.querySelector('.create--color');
+  createButton.addEventListener('click', function () {
+    axios__WEBPACK_IMPORTED_MODULE_0__["default"].post(createButton.dataset.url, {
+      name: 'New Color',
+      hex: createColor.value
+    }).then(function (res) {
+      if (res.data.success) {
+        getList(colorsList);
+      }
+    })["catch"](function (err) {
+      return console.log(err);
+    });
+  });
+  getList(colorsList);
 }
 
 /***/ }),
