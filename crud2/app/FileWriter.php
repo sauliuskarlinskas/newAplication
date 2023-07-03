@@ -3,6 +3,7 @@
 namespace Colors;
 
 use App\DB\DataBase;
+
 //use Ramsey\Uuid\Uuid;
 
 class FileWriter implements DataBase
@@ -67,5 +68,22 @@ class FileWriter implements DataBase
     public function showAll(): array
     {
         return $this->data;
+    }
+
+    public function login(array $data)
+    {
+        $email = $data['email'] ?? '';
+        $password = $data['password'] ?? '';
+        $users = (new FileWriter('users'))->showAll();
+
+        foreach ($users as $user) {
+            if ($user['email'] == $email && $user['password'] == md5($password)) {
+                $_SESSION['email'] = $email;
+                $_SESSION['name'] = $user['name'];
+                Messages::addMessage('success', 'You are logged in');
+                header('Location: /');
+                die;
+            }
+        }
     }
 }
